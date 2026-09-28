@@ -1,3 +1,4 @@
+import { courseLessons } from "../pages/course-lessons.js";
 import { courseDetails } from "../pages/course-details.js";
 import { findCourse } from "../data/courses.js";
 import { landing } from "../pages/home.js";
@@ -23,11 +24,12 @@ export function renderRoute() {
   } else if (["/creators", "/creators/purepearl-studio"].includes(path)) {
     route = { page: "creator" };
     html = creatorPage();
-  } else if (/^\/courses\/[^/]+$/.test(path)) {
+  } else if (/^\/courses\/[^/]+(?:\/lessons)?$/.test(path)) {
     const course = findCourse(path.split("/")[2]);
     if (course) {
-      route = { page: "course", course, tab: "about" };
-      html = courseDetails(course);
+      const tab = path.endsWith("/lessons") ? "lessons" : "about";
+      route = { page: "course", course, tab };
+      html = tab === "lessons" ? courseLessons(course) : courseDetails(course);
     } else html = notFound();
   } else html = notFound();
   document.querySelector("#app").innerHTML = html;

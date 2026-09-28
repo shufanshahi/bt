@@ -1,3 +1,4 @@
+import { bindLessons } from "./features/lessons.js";
 import { bindCourse } from "./features/course.js";
 import "./styles/index.css";
 import { renderRoute } from "./app/router.js";
@@ -14,3 +15,5 @@ if (route.page === "search") bindCatalog();
 if (route.page === "creator") bindCatalog({ creatorOnly: true });
 
 if (route.page === "course") bindCourse(route.course);
+
+if (route.tab === "lessons") bindLessons(route.course);
