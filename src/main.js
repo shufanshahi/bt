@@ -1,109 +1,372 @@
-import './style.css';
+import "./style.css";
 
 const asset = (name) => `/assets/${name}`;
-const icon = (name, cls = '') => {
+const icon = (name, cls = "") => {
   const paths = {
     search: '<circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4"/>',
     bag: '<path d="M5 7h14l1 14H4L5 7Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/>',
     menu: '<path d="M4 6h16M4 12h16M4 18h16"/>',
-    design: '<path d="m4 4 16 16-3 3L1 7l3-3Zm1 11 10-10 4 4L9 19l-5 1 1-5ZM12 5l3-3 7 7-3 3"/>',
+    design:
+      '<path d="m4 4 16 16-3 3L1 7l3-3Zm1 11 10-10 4 4L9 19l-5 1 1-5ZM12 5l3-3 7 7-3 3"/>',
     code: '<path d="m8 8-4 4 4 4m8-8 4 4-4 4M14 5l-4 14M5 2h14M5 22h14"/>',
-    laptop: '<rect x="4" y="4" width="16" height="13" rx="1"/><path d="M1 20h22M9 17v3m6-3v3"/>',
-    business: '<path d="M3 22V3h11v19m0-15h7v15M1 22h22M6 7h1m3 0h1M6 11h1m3 0h1M6 15h1m3 0h1M6 19h1m3 0h1m6-8h1m-1 4h1m-1 4h1"/>',
-    marketing: '<path d="m3 10 13-5v14L3 14v-4Zm3 5 2 6h4l-2-5m9-8 3-2m-3 7h4m-4 4 3 2M8 2v3M2 4l3 3"/>',
-    photo: '<rect x="2" y="5" width="20" height="16" rx="2"/><path d="m8 5 2-3h4l2 3"/><circle cx="12" cy="13" r="4"/>',
+    laptop:
+      '<rect x="4" y="4" width="16" height="13" rx="1"/><path d="M1 20h22M9 17v3m6-3v3"/>',
+    business:
+      '<path d="M3 22V3h11v19m0-15h7v15M1 22h22M6 7h1m3 0h1M6 11h1m3 0h1M6 15h1m3 0h1M6 19h1m3 0h1m6-8h1m-1 4h1m-1 4h1"/>',
+    marketing:
+      '<path d="m3 10 13-5v14L3 14v-4Zm3 5 2 6h4l-2-5m9-8 3-2m-3 7h4m-4 4 3 2M8 2v3M2 4l3 3"/>',
+    photo:
+      '<rect x="2" y="5" width="20" height="16" rx="2"/><path d="m8 5 2-3h4l2 3"/><circle cx="12" cy="13" r="4"/>',
     bars: '<path d="M5 18v-4m5 4v-7m5 7V8m5 10V4"/>',
     eye: '<path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/>',
   };
   return `<svg class="icon ${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths[name] || paths.code}</svg>`;
 };
-const brand = (light = false, markOnly = false) => `<a class="brand ${light ? 'brand-light' : ''}" href="/" aria-label="ByteSpace home"><img src="${asset('brand-mark.svg')}" width="32" height="33" alt=""/>${markOnly ? '' : '<span>ByteSpace</span>'}</a>`;
+const brand = (light = false, markOnly = false) =>
+  `<a class="brand ${light ? "brand-light" : ""}" href="/" aria-label="ByteSpace home"><img src="${asset("brand-mark.svg")}" width="32" height="33" alt=""/>${markOnly ? "" : "<span>ByteSpace</span>"}</a>`;
 const courses = [
-  { id: 'figma', title: 'Learn Figma from Basic', image: 'course-figma.webp', tags: ['UI/UX Design', 'Design', 'Drawing & Painting', 'Graphic Design'], description: 'Turn your ideas into beautiful interfaces. Explore the fundamentals of Figma, from your first frame to a shareable, interactive prototype.' },
-  { id: 'digital', title: 'Build Digital Asset', image: 'course-digital.webp', tags: ['Digital Illustration', 'Design', 'Animation', 'Creative Marketing', 'Crafts', 'Photography'], description: 'Build a collection of digital assets with a consistent visual style. Develop your creative process and make work you are proud to share.' },
-  { id: 'data', title: 'the Power of Big Data', image: 'course-data.webp', tags: ['Data Science', 'Web Development', 'Development', 'IT & Software'], description: 'Discover the stories behind the numbers. Learn the essentials of data analysis, visualization, and making informed decisions.' },
-  { id: 'productivity', title: 'Balancing Productivity and Wellbeing', image: 'course-productivity.webp', tags: ['Productivity', 'Business', 'Music', 'Film & Video'], description: 'Create a routine that works for you. Learn practical approaches to focus, prioritization, and sustainable productivity.' },
-  { id: 'finance', title: 'Mastering Money Management', image: 'course-finance.webp', tags: ['Finance', 'Business'], description: 'Build confidence with everyday financial concepts, budgeting, and setting your personal money goals.' },
-  { id: 'startup', title: 'From Idea to Startup Success', image: 'course-startup.webp', tags: ['Freelance & Entrepreneurship', 'Marketing', 'Social Media', 'Business'], description: 'Take the first steps from a new idea to a business. Explore research, planning, and communicating your vision.' },
+  {
+    id: "figma",
+    title: "Learn Figma from Basic",
+    image: "course-figma.webp",
+    tags: ["UI/UX Design", "Design", "Drawing & Painting", "Graphic Design"],
+    description:
+      "Turn your ideas into beautiful interfaces. Explore the fundamentals of Figma, from your first frame to a shareable, interactive prototype.",
+  },
+  {
+    id: "digital",
+    title: "Build Digital Asset",
+    image: "course-digital.webp",
+    tags: [
+      "Digital Illustration",
+      "Design",
+      "Animation",
+      "Creative Marketing",
+      "Crafts",
+      "Photography",
+    ],
+    description:
+      "Build a collection of digital assets with a consistent visual style. Develop your creative process and make work you are proud to share.",
+  },
+  {
+    id: "data",
+    title: "the Power of Big Data",
+    image: "course-data.webp",
+    tags: ["Data Science", "Web Development", "Development", "IT & Software"],
+    description:
+      "Discover the stories behind the numbers. Learn the essentials of data analysis, visualization, and making informed decisions.",
+  },
+  {
+    id: "productivity",
+    title: "Balancing Productivity and Wellbeing",
+    image: "course-productivity.webp",
+    tags: ["Productivity", "Business", "Music", "Film & Video"],
+    description:
+      "Create a routine that works for you. Learn practical approaches to focus, prioritization, and sustainable productivity.",
+  },
+  {
+    id: "finance",
+    title: "Mastering Money Management",
+    image: "course-finance.webp",
+    tags: ["Finance", "Business"],
+    description:
+      "Build confidence with everyday financial concepts, budgeting, and setting your personal money goals.",
+  },
+  {
+    id: "startup",
+    title: "From Idea to Startup Success",
+    image: "course-startup.webp",
+    tags: [
+      "Freelance & Entrepreneurship",
+      "Marketing",
+      "Social Media",
+      "Business",
+    ],
+    description:
+      "Take the first steps from a new idea to a business. Explore research, planning, and communicating your vision.",
+  },
 ];
-const categories = ['Featured', 'Music', 'Drawing & Painting', 'Marketing', 'Animation', 'Social Media', 'UI/UX Design', 'Creative Marketing', 'Digital Illustration', 'Film & Video', 'Crafts', 'Freelance & Entrepreneurship', 'Graphic Design', 'Photography', 'Productivity', 'Web Development', 'Data Science', 'Cooking'];
-const avatars = () => `<span class="avatar-stack">${['avatar-1', 'avatar-2', 'avatar-sarah', 'avatar-alex'].map(n => `<img src="${asset(n + '.webp')}" width="32" height="32" alt="" loading="lazy"/>`).join('')}<span>26+</span></span>`;
-const card = (course) => `<article class="course-card"><button class="course-open" data-course="${course.id}" aria-label="View ${course.title}"><div class="course-photo"><img src="${asset(course.image)}" width="341" height="195" alt="${course.title}" loading="lazy"/><div class="course-meta"><span>17 Lessons</span><span>2 hours 16 mins</span><span>59 Comments</span></div></div><div class="course-title"><h3>${course.title}</h3><span class="rating">4.5 <span aria-label="stars">★</span></span></div></button><p class="byline">by <a href="#creators">purepearl studio</a></p><div class="course-students"><span class="level">${icon('bars')} Beginner</span>${avatars()}</div><p class="price">$25<span>/lifetime</span></p></article>`;
-let selectedCategory = 'Featured';
-let query = '';
+const categories = [
+  "Featured",
+  "Music",
+  "Drawing & Painting",
+  "Marketing",
+  "Animation",
+  "Social Media",
+  "UI/UX Design",
+  "Creative Marketing",
+  "Digital Illustration",
+  "Film & Video",
+  "Crafts",
+  "Freelance & Entrepreneurship",
+  "Graphic Design",
+  "Photography",
+  "Productivity",
+  "Web Development",
+  "Data Science",
+  "Cooking",
+];
+const avatars = () =>
+  `<span class="avatar-stack">${["avatar-1", "avatar-2", "avatar-sarah", "avatar-alex"].map((n) => `<img src="${asset(n + ".webp")}" width="32" height="32" alt="" loading="lazy"/>`).join("")}<span>26+</span></span>`;
+const card = (course) =>
+  `<article class="course-card"><button class="course-open" data-course="${course.id}" aria-label="View ${course.title}"><div class="course-photo"><img src="${asset(course.image)}" width="341" height="195" alt="${course.title}" loading="lazy"/><div class="course-meta"><span>17 Lessons</span><span>2 hours 16 mins</span><span>59 Comments</span></div></div><div class="course-title"><h3>${course.title}</h3><span class="rating">4.5 <span aria-label="stars">★</span></span></div></button><p class="byline">by <a href="#creators">purepearl studio</a></p><div class="course-students"><span class="level">${icon("bars")} Beginner</span>${avatars()}</div><p class="price">$25<span>/lifetime</span></p></article>`;
+let selectedCategory = "Featured";
+let query = "";
 
 function landing() {
-  document.title = 'ByteSpace — Discover Your Next Possibility';
-  return `<section class="hero blue-grid">
-    <header class="site-header container">${brand(true)}<nav class="desktop-nav" aria-label="Main navigation"><a class="active" href="/">Home</a><a href="#courses">Courses</a><a href="#creators">Creators</a></nav><div class="header-actions"><a href="/login">Sign In</a><a href="/signup">Join Us</a><button class="icon-button bag-button" aria-label="View saved courses">${icon('bag')}</button><button class="icon-button menu-button" aria-label="Open menu" aria-expanded="false">${icon('menu')}</button></div><nav class="mobile-nav" aria-label="Mobile navigation" hidden><a href="#courses">Courses</a><a href="#creators">Creators</a><a href="/login">Sign In</a><a href="/signup">Join Us</a></nav></header>
-    <main id="main" tabindex="-1"><div class="hero-copy container"><h1>Get Access to Hundreds<br/>Courses Available</h1><p>Unlock your creativity, gain valuable knowledge, and grow your business with our wide range of courses.</p><form class="search-form" role="search"><label class="search-input">${icon('search')}<input type="search" name="search" aria-label="Search courses, topics, or creators" placeholder="Course, topic, creator" /></label><button class="button" type="submit">Search</button></form></div></main>
-    <img class="hero-coil" src="${asset('hero-coil.webp')}" alt="" width="201" height="275"/><img class="hero-block" src="${asset('hero-block.webp')}" alt="" width="170" height="305"/>
-    <img class="hero-art" src="${asset('hero-art.webp')}" alt="A happy student learning with ByteSpace, surrounded by course and learning-progress cards" width="1440" height="474" fetchpriority="high"/>
+  document.title = "ByteSpace — Discover Your Next Possibility";
+  return `<main id="main" tabindex="-1"><section class="hero blue-grid">
+    <header class="site-header container">${brand(true)}<nav class="desktop-nav" aria-label="Main navigation"><a class="active" href="/">Home</a><a href="#courses">Courses</a><a href="#creators">Creators</a></nav><div class="header-actions"><a href="/login">Sign In</a><a href="/signup">Join Us</a><button class="icon-button bag-button" aria-label="View saved courses">${icon("bag")}</button><button class="icon-button menu-button" aria-label="Open menu" aria-expanded="false">${icon("menu")}</button></div><nav class="mobile-nav" aria-label="Mobile navigation" hidden><a href="#courses">Courses</a><a href="#creators">Creators</a><a href="/login">Sign In</a><a href="/signup">Join Us</a></nav></header>
+    <div class="hero-copy container"><h1>Get Access to Hundreds<br/>Courses Available</h1><p>Unlock your creativity, gain valuable knowledge, and grow your business with our wide range of courses.</p><form class="search-form" role="search"><label class="search-input">${icon("search")}<input type="search" name="search" aria-label="Search courses, topics, or creators" placeholder="Course, topic, creator" /></label><button class="button" type="submit">Search</button></form></div>
+    <img class="hero-coil" src="${asset("hero-coil.webp")}" alt="" width="201" height="275"/><img class="hero-block" src="${asset("hero-block.webp")}" alt="" width="170" height="305"/>
+    <img class="hero-triangle" src="${asset("hero-triangle.webp")}" width="160" height="150" alt=""/><img class="hero-small-coil" src="${asset("hero-small-coil.webp")}" width="130" height="145" alt=""/>
+    <img class="hero-art" src="${asset("hero-art.webp")}" alt="A happy student learning with ByteSpace, surrounded by course and learning-progress cards" width="1440" height="474" fetchpriority="high"/>
   </section>
-  <div class="partners" aria-label="Our learning partners"><img src="${asset('partners.webp')}" width="1150" height="67" alt="Five Logoipsum learning partners"/></div>
+  <div class="partners" aria-label="Our learning partners"><img src="${asset("partners.webp")}" width="1150" height="67" alt="Five Logoipsum learning partners"/></div>
   <section class="catalog container section" id="courses" aria-labelledby="courses-title"><div class="section-intro"><h2 id="courses-title">Discover Your Passion,<br/>Build Your Skills</h2><p>At Bytespace Courses, we bring you closer to life-changing knowledge. Explore a variety of courses across different<br class="desktop-break"/> fields, from technology to the arts, and make a difference in your career and life.</p></div>
-    <div class="category-filters" aria-label="Filter courses by category">${categories.map((c, i) => `<button class="filter ${i === 0 ? 'is-active' : ''}" aria-pressed="${i === 0}" data-filter="${c}">${c}</button>`).join('')}<button class="more-filters" aria-expanded="false">+ More</button><span class="extra-filters" hidden><button class="filter" data-filter="Finance" aria-pressed="false">Finance</button><button class="filter" data-filter="Business" aria-pressed="false">Business</button></span></div>
-    <div class="results-summary" role="status" aria-live="polite"></div><div class="course-grid">${courses.map(card).join('')}</div>
-    <section class="learning-paths" id="categories" aria-labelledby="paths-title"><div class="section-intro"><h2 id="paths-title">Explore Diverse Learning Paths at Bytespace</h2><p>At Bytespace, we believe in empowering individuals through knowledge. Our diverse range of courses spans various<br class="desktop-break"/> fields, ensuring there's something for everyone. Unleash your potential and explore our carefully curated categories.</p></div><div class="path-grid">${[['Design','design'],['Development','code'],['IT & Software','laptop'],['Business','business'],['Marketing','marketing'],['Photography','photo']].map(([n,i]) => `<button class="path-card" data-path="${n}"><span>${icon(i)}</span>${n}</button>`).join('')}</div></section>
+    <div class="category-filters" aria-label="Filter courses by category">${categories.map((c, i) => `<button class="filter ${i === 0 ? "is-active" : ""}" aria-pressed="${i === 0}" data-filter="${c}">${c}</button>`).join("")}<button class="more-filters" aria-expanded="false">+ More</button><span class="extra-filters" hidden><button class="filter" data-filter="Finance" aria-pressed="false">Finance</button><button class="filter" data-filter="Business" aria-pressed="false">Business</button></span></div>
+    <div class="results-summary" role="status" aria-live="polite"></div><div class="course-grid">${courses.map(card).join("")}</div>
+    <section class="learning-paths" id="categories" aria-labelledby="paths-title"><div class="section-intro"><h2 id="paths-title">Explore Diverse Learning Paths at Bytespace</h2><p>At Bytespace, we believe in empowering individuals through knowledge. Our diverse range of courses spans various<br class="desktop-break"/> fields, ensuring there's something for everyone. Unleash your potential and explore our carefully curated categories.</p></div><div class="path-grid">${[
+      ["Design", "design"],
+      ["Development", "code"],
+      ["IT & Software", "laptop"],
+      ["Business", "business"],
+      ["Marketing", "marketing"],
+      ["Photography", "photo"],
+    ]
+      .map(
+        ([n, i]) =>
+          `<button class="path-card" data-path="${n}"><span>${icon(i)}</span>${n}</button>`,
+      )
+      .join("")}</div></section>
   </section>
-  <section class="features" id="about"><div class="container"><div class="feature-row"><div class="feature-copy"><h2>Your Path to Professional<br/>Growth Starts Here!</h2><p>Explore our curated selection of courses tailored to enhance your capabilities and accelerate your career journey.<br/>Whether you are looking to sharpen specific skills, gain industry expertise, or embark on a new career path entirely, we have the resources you need.</p><dl class="stats"><div><dt>12K</dt><dd>Students</dd></div><div><dt>70+</dt><dd>Courses</dd></div><div><dt>16</dt><dd>Creators</dd></div></dl></div><img class="feature-art growth-art" src="${asset('growth-art.webp')}" alt="Student with a laptop, a Figma course, and a 55 percent learning progress card" width="665" height="690" loading="lazy"/></div><div class="feature-row creator-feature" id="creators"><img class="feature-art creator-art" src="${asset('creator-art.webp')}" alt="Course creator with a tablet, earnings cards, and happy students" width="600" height="685" loading="lazy"/><div class="feature-copy"><h2>Create &amp; Manage<br/>Courses Easily.</h2><p><strong>ByteSpace</strong> supports individuals or entities in the creation, publication, and administration of educational courses.</p><ul class="benefits"><li>Share Your Expertise</li><li>Monetize Your Passion</li><li>Flexibility and Autonomy</li><li>Build a Community</li></ul></div></div></div></section>
-  <section class="creator-cta blue-grid"><img class="cta-art cta-left" src="${asset('creator-left.webp')}" width="210" height="483" alt="" loading="lazy"/><div class="container"><h2>Unlock Your Potential as a<br/>Creator with ByteSpace</h2><p>Experience the collaboration of numerous creators and an expanding selection of courses. Register now and become a<br class="desktop-break"/> part of a community comprising over 10,000 local and international creators. Utilize our Course Editor, and showcase your<br class="desktop-break"/> expertise by publishing your finest course on the ByteSpace Course Library.</p><a class="button" href="/signup?role=creator">Join as Creator</a></div><img class="cta-art cta-right" src="${asset('creator-right.webp')}" width="210" height="483" alt="" loading="lazy"/></section>
+  <section class="features" id="about"><div class="container"><div class="feature-row"><div class="feature-copy"><h2>Your Path to Professional<br/>Growth Starts Here!</h2><p>Explore our curated selection of courses tailored to enhance your capabilities and accelerate your career journey.<br/>Whether you are looking to sharpen specific skills, gain industry expertise, or embark on a new career path entirely, we have the resources you need.</p><dl class="stats"><div><dt>12K</dt><dd>Students</dd></div><div><dt>70+</dt><dd>Courses</dd></div><div><dt>16</dt><dd>Creators</dd></div></dl></div><img class="feature-art growth-art" src="${asset("growth-art.webp")}" alt="Student with a laptop, a Figma course, and a 55 percent learning progress card" width="665" height="690" loading="lazy"/></div><div class="feature-row creator-feature" id="creators"><img class="feature-art creator-art" src="${asset("creator-art.webp")}" alt="Course creator with a tablet, earnings cards, and happy students" width="600" height="665" loading="lazy"/><div class="feature-copy"><h2>Create &amp; Manage<br/>Courses Easily.</h2><p><strong>ByteSpace</strong> supports individuals or entities in the creation, publication, and administration of educational courses.</p><ul class="benefits"><li>Share Your Expertise</li><li>Monetize Your Passion</li><li>Flexibility and Autonomy</li><li>Build a Community</li></ul></div></div></div></section>
+  <section class="creator-cta blue-grid"><img class="cta-art cta-left" src="${asset("creator-left.webp")}" width="210" height="483" alt="" loading="lazy"/><div class="container"><h2>Unlock Your Potential as a<br/>Creator with ByteSpace</h2><p>Experience the collaboration of numerous creators and an expanding selection of courses. Register now and become a<br class="desktop-break"/> part of a community comprising over 10,000 local and international creators. Utilize our Course Editor, and showcase your<br class="desktop-break"/> expertise by publishing your finest course on the ByteSpace Course Library.</p><a class="button" href="/signup?role=creator">Join as Creator</a></div><img class="cta-art cta-right" src="${asset("creator-right.webp")}" width="210" height="483" alt="" loading="lazy"/></section>
   <section class="community"><div class="container"><div class="community-heading"><h2>Discover What Our<br/>Community Is Saying</h2><p>At ByteSpace, our vibrant community of learners and creators is at the heart of what we do. Hear directly from those who have experienced the transformative journey of learning and creating on our platform. Explore testimonials that reflect the diverse perspectives of enthusiastic learners and accomplished creators.</p></div><div class="testimonials">${[
-    ['sarah','Sarah M.','Enthusiastic Learner','ByteSpace has transformed my approach to learning. The diverse range of courses and the quality of content provided by creators have exceeded my expectations. The platform truly fosters a sense of community and lifelong learning.'],
-    ['james','James L.','Lifelong Learner',"I've tried several online learning platforms, and ByteSpace stands out for its vibrant community and the variety of courses available. The easy navigation and engaging content make it a go-to platform for continuous skill development."],
-    ['alex','Alex B.','Inspired Creator',"As a creator, ByteSpace has been a game-changer for me. The Course Editor is user-friendly, and the support from the community is incredible. It's fulfilling to see my courses making a positive impact on learners globally."]
-  ].map(([img,name,role,quote]) => `<figure class="testimonial"><img src="${asset('avatar-'+img+'.webp')}" width="80" height="80" alt="${name}" loading="lazy"/><figcaption><h3>${name}</h3><p>${role}</p></figcaption><blockquote>“${quote}”</blockquote></figure>`).join('')}</div></div></section>
-  ${footer()}`;
+    [
+      "sarah",
+      "Sarah M.",
+      "Enthusiastic Learner",
+      "ByteSpace has transformed my approach to learning. The diverse range of courses and the quality of content provided by creators have exceeded my expectations. The platform truly fosters a sense of community and lifelong learning.",
+    ],
+    [
+      "james",
+      "James L.",
+      "Lifelong Learner",
+      "I've tried several online learning platforms, and ByteSpace stands out for its vibrant community and the variety of courses available. The easy navigation and engaging content make it a go-to platform for continuous skill development.",
+    ],
+    [
+      "alex",
+      "Alex B.",
+      "Inspired Creator",
+      "As a creator, ByteSpace has been a game-changer for me. The Course Editor is user-friendly, and the support from the community is incredible. It's fulfilling to see my courses making a positive impact on learners globally.",
+    ],
+  ]
+    .map(
+      ([img, name, role, quote]) =>
+        `<figure class="testimonial"><img src="${asset("avatar-" + img + ".webp")}" width="80" height="80" alt="${name}" loading="lazy"/><figcaption><h3>${name}</h3><p>${role}</p></figcaption><blockquote>“${quote}”</blockquote></figure>`,
+    )
+    .join("")}</div></div></section>
+  </main>${footer()}`;
 }
 function footer() {
   return `<footer class="site-footer"><div class="container"><div class="footer-top"><div class="newsletter">${brand()}<p>Stay Up to date with our latest features and releases by joining our newsletter.</p><form class="newsletter-form"><label class="sr-only" for="newsletter-email">Email for newsletter</label><input type="email" id="newsletter-email" placeholder="Enter your email" required/><button class="button" type="submit">Search</button></form><p class="fine-print">By subscribing, you agree to our <button data-info="Privacy Policy">Privacy Policy</button> and consent to receive updates from our company.</p></div><nav class="footer-links" aria-label="Footer navigation"><div><a href="#courses">Featured Courses</a><a href="#categories">Featured Categories</a><button data-footer-filter="Business">Business</button><button data-footer-filter="IT & Software">IT</button><button data-footer-filter="Design">Design</button></div><div><button data-footer-filter="Development">Development</button><button data-footer-filter="Marketing">Marketing</button><button data-footer-filter="Photography">Photography</button><button data-footer-filter="Finance">Finance</button><button data-footer-filter="Sport">Sport</button></div><div><a href="/signup?role=creator">Become a Creator</a><button data-info="Affiliate Program">Affiliate Program</button><button data-info="Contact">Contact</button><button data-info="Help">Help</button><a href="#about">About</a></div></nav></div><div class="footer-bottom"><p>© 2023 ByteSpace. All rights reserved.</p><div><button data-info="Privacy Policy">Privacy Policy</button><button data-info="Terms of Service">Terms of Service</button><button data-info="Cookies Settings">Cookies Settings</button></div></div></div></footer>`;
 }
 function auth(signup) {
-  document.title = `${signup ? 'Create an account' : 'Sign In'} — ByteSpace`;
-  return `<main id="main" class="auth-page blue-grid"><div class="auth-layout container"><section class="auth-intro">${brand(true,true)}<h2>${signup ? 'Start your learning journey' : 'Sign in with ease'}</h2><p>${signup ? 'Join a community of curious minds. Create your account and unlock a world of knowledge.' : 'Experience a seamless and efficient sign-in process that grants you instant access to a world of knowledge.'}</p><img class="auth-art" src="${asset('auth-art.svg')}" width="565" height="610" alt="ByteSpace courses and a community of happy students"/></section><section class="auth-panel" aria-labelledby="auth-title"><p class="auth-eyebrow">${signup ? 'Sign Up' : 'Sign In'}</p><h1 id="auth-title">${signup ? 'Create an Account' : 'Welcome Back'}</h1><form class="auth-form" data-signup="${signup}">${signup ? '<label>Full name<input name="name" autocomplete="name" placeholder="Your full name" required minlength="2"/></label>' : ''}<label>Email<input name="email" type="email" autocomplete="email" placeholder="designer@example.com" required/></label><label>Password<span class="password-input"><input name="password" type="password" autocomplete="${signup ? 'new-password' : 'current-password'}" placeholder="********" required minlength="8"/><button class="password-toggle icon-button" type="button" aria-label="Show password" aria-pressed="false">${icon('eye')}</button></span></label>${signup ? '<p class="auth-hint">Use at least 8 characters.</p><label class="terms"><input type="checkbox" required/> <span>I agree to the <button type="button" data-info="Terms of Service">Terms of Service</button> and <button type="button" data-info="Privacy Policy">Privacy Policy</button>.</span></label>' : ''}<div class="auth-submit"><button class="button" type="submit">${signup ? 'Sign Up' : 'Sign In'}</button></div><p class="auth-feedback" role="status"></p></form><div class="auth-divider"><span>or</span></div><div class="social-buttons"><button aria-label="Continue with Facebook" data-provider="Facebook"><span class="facebook">f</span></button><button aria-label="Continue with Google" data-provider="Google"><span>G</span></button></div><p class="auth-switch">${signup ? 'Already have an account? <a href="/login">Sign in</a>' : 'New user? <a href="/signup">Create an account</a>'}</p><a class="back-home" href="/">← Back to home</a></section></div></main>`;
+  document.title = `${signup ? "Create an account" : "Sign In"} — ByteSpace`;
+  return `<main id="main" class="auth-page blue-grid">
+    <div class="auth-layout container">
+      <section class="auth-intro">
+        ${brand(true, true)}
+        <h2>${signup ? "Sign up and come in" : "Sign in with ease"}</h2>
+        <p>${signup ? "The registration process is straightforward, uncomplicated, and efficient, allowing users to sign up quickly, easily, and at no cost." : "Experience a seamless and efficient sign-in process that grants you instant access to a world of knowledge."}</p>
+        <img class="auth-art" src="${asset("auth-art.svg")}" width="565" height="610" alt="ByteSpace courses and a community of happy students"/>
+      </section>
+      <section class="auth-panel ${signup ? "signup-panel" : ""}" aria-labelledby="auth-title">
+        <p class="auth-eyebrow">${signup ? "Create an Account" : "Sign In"}</p>
+        <h1 id="auth-title">${signup ? "Welcome to<br/>ByteSpace" : "Welcome Back"}</h1>
+        <form class="auth-form" data-signup="${signup}">
+          ${signup ? '<label>Full Name<input name="name" autocomplete="name" placeholder="Jamie Davis" required minlength="2"/></label>' : ""}
+          <label>Email<input name="email" type="email" autocomplete="email" placeholder="designer@example.com" required/></label>
+          <label>Password<span class="password-input"><input name="password" type="password" autocomplete="${signup ? "new-password" : "current-password"}" placeholder="********" required minlength="8" title="Use at least 8 characters"/><button class="password-toggle icon-button" type="button" aria-label="Show password" aria-pressed="false">${icon("eye")}</button></span></label>
+          <div class="auth-submit"><button class="button" type="submit">${signup ? "Continue" : "Sign In"}</button></div>
+          <p class="auth-feedback" role="status"></p>
+        </form>
+        ${signup ? "" : '<div class="auth-divider"><span>or</span></div><div class="social-buttons"><button aria-label="Continue with Facebook" data-provider="Facebook"><span class="facebook">f</span></button><button aria-label="Continue with Google" data-provider="Google"><span>G</span></button></div>'}
+        <p class="auth-switch">${signup ? 'Already have an account? <a href="/login">Login</a>' : 'New user? <a href="/signup">Create an account</a>'}</p>
+      </section>
+    </div>
+  </main>`;
 }
-const isSignup = ['/signup','/register'].includes(location.pathname.replace(/\/$/,''));
-const isAuth = isSignup || location.pathname.replace(/\/$/,'') === '/login';
-document.querySelector('#app').innerHTML = isAuth ? auth(isSignup) : landing();
-const dialog = document.querySelector('#detail-dialog');
-function openDialog(html) { document.querySelector('#dialog-content').innerHTML = html; dialog.showModal(); }
-document.querySelector('.dialog-close').onclick = () => dialog.close();
-dialog.addEventListener('click', e => { if (e.target === dialog && (e.clientX < dialog.getBoundingClientRect().left || e.clientX > dialog.getBoundingClientRect().right || e.clientY < dialog.getBoundingClientRect().top || e.clientY > dialog.getBoundingClientRect().bottom)) dialog.close(); });
-function updateCourses(scroll = false) {
-  const filtered = courses.filter(c => (selectedCategory === 'Featured' || c.tags.includes(selectedCategory)) && (!query || `${c.title} ${c.tags.join(' ')} purepearl studio`.toLowerCase().includes(query.toLowerCase())));
-  document.querySelector('.course-grid').innerHTML = filtered.length ? filtered.map(card).join('') : `<div class="empty-state"><h3>No courses found</h3><p>Try another topic or explore all our featured courses.</p><button class="button" data-reset>View all courses</button></div>`;
-  document.querySelector('.results-summary').textContent = selectedCategory === 'Featured' && !query ? '' : `${filtered.length} ${filtered.length === 1 ? 'course' : 'courses'}${query ? ` matching “${query}”` : ''}${selectedCategory !== 'Featured' ? ` in ${selectedCategory}` : ''}`;
-  document.querySelectorAll('[data-filter]').forEach(b => { const active = b.dataset.filter === selectedCategory; b.classList.toggle('is-active', active); b.setAttribute('aria-pressed', String(active)); });
-  if (scroll) document.querySelector('#courses').scrollIntoView({behavior:'smooth'});
+
+const isSignup = ["/signup", "/register"].includes(
+  location.pathname.replace(/\/$/, ""),
+);
+const isAuth = isSignup || location.pathname.replace(/\/$/, "") === "/login";
+document.querySelector("#app").innerHTML = isAuth ? auth(isSignup) : landing();
+const dialog = document.querySelector("#detail-dialog");
+function openDialog(html) {
+  document.querySelector("#dialog-content").innerHTML = html;
+  dialog.showModal();
 }
-function notify(message) { const el = document.querySelector('.toast'); el.textContent = message; el.classList.add('visible'); clearTimeout(notify.timer); notify.timer = setTimeout(() => el.classList.remove('visible'), 4500); }
-document.addEventListener('click', e => {
-  const button = e.target.closest('button');
-  if (!button) return;
-  if (button.dataset.filter || button.dataset.path || button.dataset.footerFilter) { selectedCategory = button.dataset.filter || button.dataset.path || button.dataset.footerFilter; query = ''; document.querySelector('[name=search]').value=''; updateCourses(!button.dataset.filter); }
-  if (button.hasAttribute('data-reset')) {selectedCategory='Featured';query='';document.querySelector('[name=search]').value='';updateCourses();}
-  if (button.dataset.course) { const c=courses.find(c=>c.id===button.dataset.course);openDialog(`<img class="detail-image" src="${asset(c.image)}" alt="${c.title}"/><p class="eyebrow">${c.tags[0]} · Beginner</p><h2 id="dialog-title">${c.title}</h2><p>${c.description}</p><div class="detail-facts"><span>17 lessons</span><span>2 hours 16 mins</span><span>★ 4.5</span></div><p class="price">$25 <span>/ lifetime access</span></p><a class="button" href="/signup">Start learning</a>`); }
-  if (button.classList.contains('more-filters')) {const extra=document.querySelector('.extra-filters');extra.hidden=!extra.hidden;button.setAttribute('aria-expanded',String(!extra.hidden));button.textContent=extra.hidden?'+ More':'− Less';}
-  if (button.classList.contains('menu-button')) {const nav=document.querySelector('.mobile-nav');nav.hidden=!nav.hidden;button.setAttribute('aria-expanded',String(!nav.hidden));button.setAttribute('aria-label',nav.hidden?'Open menu':'Close menu');}
-  if (button.classList.contains('bag-button')) openDialog('<h2 id="dialog-title">Your learning starts here</h2><p>You haven’t saved any courses yet. Explore a course and create an account to start your learning journey.</p><button class="button" data-browse>Browse courses</button>');
-  if (button.hasAttribute('data-browse')) {dialog.close();document.querySelector('#courses').scrollIntoView({behavior:'smooth'});}
-  if (button.classList.contains('password-toggle')) {const input=button.previousElementSibling;const show=input.type==='password';input.type=show?'text':'password';button.setAttribute('aria-label',show?'Hide password':'Show password');button.setAttribute('aria-pressed',String(show));}
-  if (button.dataset.provider) notify(`${button.dataset.provider} sign-in is not connected in this frontend demo.`);
-  if (button.dataset.info) showInfo(button.dataset.info);
-  if (button.hasAttribute('data-cookie-save')) {localStorage.setItem('bytespace-cookie-preference',document.querySelector('#optional-cookies').checked?'accepted':'essential');dialog.close();notify('Cookie preferences saved.');}
+document.querySelector(".dialog-close").onclick = () => dialog.close();
+dialog.addEventListener("click", (e) => {
+  if (
+    e.target === dialog &&
+    (e.clientX < dialog.getBoundingClientRect().left ||
+      e.clientX > dialog.getBoundingClientRect().right ||
+      e.clientY < dialog.getBoundingClientRect().top ||
+      e.clientY > dialog.getBoundingClientRect().bottom)
+  )
+    dialog.close();
 });
-document.querySelector('.search-form')?.addEventListener('submit',e=>{e.preventDefault();query=new FormData(e.currentTarget).get('search').trim();selectedCategory='Featured';updateCourses(true);});
-document.querySelector('.mobile-nav')?.addEventListener('click',e=>{if(e.target.closest('a')){document.querySelector('.mobile-nav').hidden=true;document.querySelector('.menu-button').setAttribute('aria-expanded','false');}});
-document.querySelector('.newsletter-form')?.addEventListener('submit',e=>{e.preventDefault();notify('Thanks for your interest! Newsletter subscriptions are not connected in this demo.');});
-document.querySelector('.auth-form')?.addEventListener('submit',e=>{e.preventDefault();document.querySelector('.auth-feedback').textContent=`Your ${isSignup?'signup':'sign-in'} details are valid. This is a frontend demo; ${isSignup?'no account has been created':'authentication is not connected'}.`;});
+function updateCourses(scroll = false) {
+  const filtered = courses.filter(
+    (c) =>
+      (selectedCategory === "Featured" || c.tags.includes(selectedCategory)) &&
+      (!query ||
+        `${c.title} ${c.tags.join(" ")} purepearl studio`
+          .toLowerCase()
+          .includes(query.toLowerCase())),
+  );
+  document.querySelector(".course-grid").innerHTML = filtered.length
+    ? filtered.map(card).join("")
+    : `<div class="empty-state"><h3>No courses found</h3><p>Try another topic or explore all our featured courses.</p><button class="button" data-reset>View all courses</button></div>`;
+  document.querySelector(".results-summary").textContent =
+    selectedCategory === "Featured" && !query
+      ? ""
+      : `${filtered.length} ${filtered.length === 1 ? "course" : "courses"}${query ? ` matching “${query}”` : ""}${selectedCategory !== "Featured" ? ` in ${selectedCategory}` : ""}`;
+  document.querySelectorAll("[data-filter]").forEach((b) => {
+    const active = b.dataset.filter === selectedCategory;
+    b.classList.toggle("is-active", active);
+    b.setAttribute("aria-pressed", String(active));
+  });
+  if (scroll)
+    document.querySelector("#courses").scrollIntoView({ behavior: "smooth" });
+}
+function notify(message) {
+  const el = document.querySelector(".toast");
+  el.textContent = message;
+  el.classList.add("visible");
+  clearTimeout(notify.timer);
+  notify.timer = setTimeout(() => el.classList.remove("visible"), 4500);
+}
+document.addEventListener("click", (e) => {
+  const button = e.target.closest("button");
+  if (!button) return;
+  if (
+    button.dataset.filter ||
+    button.dataset.path ||
+    button.dataset.footerFilter
+  ) {
+    selectedCategory =
+      button.dataset.filter ||
+      button.dataset.path ||
+      button.dataset.footerFilter;
+    query = "";
+    document.querySelector("[name=search]").value = "";
+    updateCourses(!button.dataset.filter);
+  }
+  if (button.hasAttribute("data-reset")) {
+    selectedCategory = "Featured";
+    query = "";
+    document.querySelector("[name=search]").value = "";
+    updateCourses();
+  }
+  if (button.dataset.course) {
+    const c = courses.find((c) => c.id === button.dataset.course);
+    openDialog(
+      `<img class="detail-image" src="${asset(c.image)}" alt="${c.title}"/><p class="eyebrow">${c.tags[0]} · Beginner</p><h2 id="dialog-title">${c.title}</h2><p>${c.description}</p><div class="detail-facts"><span>17 lessons</span><span>2 hours 16 mins</span><span>★ 4.5</span></div><p class="price">$25 <span>/ lifetime access</span></p><a class="button" href="/signup">Start learning</a>`,
+    );
+  }
+  if (button.classList.contains("more-filters")) {
+    const extra = document.querySelector(".extra-filters");
+    extra.hidden = !extra.hidden;
+    button.setAttribute("aria-expanded", String(!extra.hidden));
+    button.textContent = extra.hidden ? "+ More" : "− Less";
+  }
+  if (button.classList.contains("menu-button")) {
+    const nav = document.querySelector(".mobile-nav");
+    nav.hidden = !nav.hidden;
+    button.setAttribute("aria-expanded", String(!nav.hidden));
+    button.setAttribute("aria-label", nav.hidden ? "Open menu" : "Close menu");
+  }
+  if (button.classList.contains("bag-button"))
+    openDialog(
+      '<h2 id="dialog-title">Your learning starts here</h2><p>You haven’t saved any courses yet. Explore a course and create an account to start your learning journey.</p><button class="button" data-browse>Browse courses</button>',
+    );
+  if (button.hasAttribute("data-browse")) {
+    dialog.close();
+    document.querySelector("#courses").scrollIntoView({ behavior: "smooth" });
+  }
+  if (button.classList.contains("password-toggle")) {
+    const input = button.previousElementSibling;
+    const show = input.type === "password";
+    input.type = show ? "text" : "password";
+    button.setAttribute("aria-label", show ? "Hide password" : "Show password");
+    button.setAttribute("aria-pressed", String(show));
+  }
+  if (button.dataset.provider)
+    notify(
+      `${button.dataset.provider} sign-in is not connected in this frontend demo.`,
+    );
+  if (button.dataset.info) showInfo(button.dataset.info);
+  if (button.hasAttribute("data-cookie-save")) {
+    localStorage.setItem(
+      "bytespace-cookie-preference",
+      document.querySelector("#optional-cookies").checked
+        ? "accepted"
+        : "essential",
+    );
+    dialog.close();
+    notify("Cookie preferences saved.");
+  }
+});
+document.querySelector(".search-form")?.addEventListener("submit", (e) => {
+  e.preventDefault();
+  query = new FormData(e.currentTarget).get("search").trim();
+  selectedCategory = "Featured";
+  updateCourses(true);
+});
+document.querySelector(".mobile-nav")?.addEventListener("click", (e) => {
+  if (e.target.closest("a")) {
+    document.querySelector(".mobile-nav").hidden = true;
+    document
+      .querySelector(".menu-button")
+      .setAttribute("aria-label", "Open menu");
+    document
+      .querySelector(".menu-button")
+      .setAttribute("aria-expanded", "false");
+  }
+});
+document.querySelector(".newsletter-form")?.addEventListener("submit", (e) => {
+  e.preventDefault();
+  notify(
+    "Thanks for your interest! Newsletter subscriptions are not connected in this demo.",
+  );
+});
+document.querySelector(".auth-form")?.addEventListener("submit", (e) => {
+  e.preventDefault();
+  document.querySelector(".auth-feedback").textContent =
+    `Your ${isSignup ? "signup" : "sign-in"} details are valid. This is a frontend demo; ${isSignup ? "no account has been created" : "authentication is not connected"}.`;
+});
 function showInfo(title) {
   const text = {
-    'Privacy Policy':'This demonstration website does not send your form entries to a server. No account, password, or newsletter email is stored. Cookie preferences are saved only in your browser.',
-    'Terms of Service':'ByteSpace is presented here as a frontend demonstration. Course previews and prices are sample content. Account creation, payments, and course delivery are not connected.',
-    'Affiliate Program':'Interested in sharing ByteSpace? Affiliate applications are not available in this demo. You can explore our creator signup page to see the onboarding experience.',
-    'Contact':'Thanks for your interest in ByteSpace. A support service is not connected to this demonstration website.',
-    'Help':'Search for a course from the home page, filter by a topic, or choose a learning path. Select a course card to see its details. Use Join Us to explore the signup screen.',
+    "Privacy Policy":
+      "This demonstration website does not send your form entries to a server. No account, password, or newsletter email is stored. Cookie preferences are saved only in your browser.",
+    "Terms of Service":
+      "ByteSpace is presented here as a frontend demonstration. Course previews and prices are sample content. Account creation, payments, and course delivery are not connected.",
+    "Affiliate Program":
+      "Interested in sharing ByteSpace? Affiliate applications are not available in this demo. You can explore our creator signup page to see the onboarding experience.",
+    Contact:
+      "Thanks for your interest in ByteSpace. A support service is not connected to this demonstration website.",
+    Help: "Search for a course from the home page, filter by a topic, or choose a learning path. Select a course card to see its details. Use Join Us to explore the signup screen.",
   };
-  if(title==='Cookies Settings') {openDialog(`<h2 id="dialog-title">Cookie settings</h2><p>Essential preferences keep this demo working. Optional analytics are disabled and no tracking services are installed.</p><label class="terms"><input type="checkbox" id="optional-cookies" ${localStorage.getItem('bytespace-cookie-preference')==='accepted'?'checked':''}/> Allow optional cookies if available</label><button class="button" data-cookie-save>Save preferences</button>`);return;}
+  if (title === "Cookies Settings") {
+    openDialog(
+      `<h2 id="dialog-title">Cookie settings</h2><p>Essential preferences keep this demo working. Optional analytics are disabled and no tracking services are installed.</p><label class="terms"><input type="checkbox" id="optional-cookies" ${localStorage.getItem("bytespace-cookie-preference") === "accepted" ? "checked" : ""}/> Allow optional cookies if available</label><button class="button" data-cookie-save>Save preferences</button>`,
+    );
+    return;
+  }
   openDialog(`<h2 id="dialog-title">${title}</h2><p>${text[title]}</p>`);
 }

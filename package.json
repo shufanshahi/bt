@@ -7,10 +7,12 @@
     "dev": "vite --host 0.0.0.0",
     "build": "vite build",
     "preview": "vite preview --host 0.0.0.0",
-    "test": "playwright test"
+    "test": "npm run build && playwright test",
+    "format": "prettier --write index.html src tests playwright.config.js package.json README.md"
   },
   "devDependencies": {
     "@playwright/test": "^1.63.0",
+    "prettier": "^3.9.9",
     "vite": "^8.3.1"
   }
 }
