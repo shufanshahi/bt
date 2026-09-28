@@ -1,13 +1,13 @@
+import { header } from "../components/header.js";
 import { asset } from "../lib/assets.js";
 import { icon } from "../components/icons.js";
-import { brand } from "../components/brand.js";
 import { footer } from "../components/footer.js";
 import { card } from "../components/course-card.js";
 import { courses, categories } from "../data/courses.js";
 export function landing() {
   document.title = "ByteSpace — Discover Your Next Possibility";
   return `<main id="main" tabindex="-1"><section class="hero blue-grid">
-    <header class="site-header container">${brand(true)}<nav class="desktop-nav" aria-label="Main navigation"><a class="active" href="/">Home</a><a href="#courses">Courses</a><a href="#creators">Creators</a></nav><div class="header-actions"><a href="/login">Sign In</a><a href="/signup">Join Us</a><button class="icon-button bag-button" aria-label="View saved courses">${icon("bag")}</button><button class="icon-button menu-button" aria-label="Open menu" aria-expanded="false">${icon("menu")}</button></div><nav class="mobile-nav" aria-label="Mobile navigation" hidden><a href="#courses">Courses</a><a href="#creators">Creators</a><a href="/login">Sign In</a><a href="/signup">Join Us</a></nav></header>
+    ${header("home")}
     <div class="hero-copy container"><h1>Get Access to Hundreds<br/>Courses Available</h1><p>Unlock your creativity, gain valuable knowledge, and grow your business with our wide range of courses.</p><form class="search-form" role="search"><label class="search-input">${icon("search")}<input type="search" name="search" aria-label="Search courses, topics, or creators" placeholder="Course, topic, creator" /></label><button class="button" type="submit">Search</button></form></div>
     <img class="hero-coil" src="${asset("hero-coil.webp")}" alt="" width="201" height="275"/><img class="hero-block" src="${asset("hero-block.webp")}" alt="" width="170" height="305"/>
     <img class="hero-triangle" src="${asset("hero-triangle.webp")}" width="160" height="150" alt=""/><img class="hero-small-coil" src="${asset("hero-small-coil.webp")}" width="130" height="145" alt=""/>

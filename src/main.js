@@ -1,5 +1,13 @@
 import "./styles/index.css";
 import { renderRoute } from "./app/router.js";
-import { bindInteractions } from "./features/interactions.js";
+import { bindSite } from "./features/site.js";
+import { bindHome } from "./features/home.js";
+import { bindAuth } from "./features/auth.js";
+import { bindCatalog } from "./features/catalog.js";
 
-bindInteractions(renderRoute());
+const route = renderRoute();
+bindSite();
+if (route.page === "home") bindHome();
+if (route.page === "auth") bindAuth(route.isSignup);
+if (route.page === "search") bindCatalog();
+if (route.page === "creator") bindCatalog({ creatorOnly: true });

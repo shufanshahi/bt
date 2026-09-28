@@ -80,3 +80,77 @@ export const categories = [
   "Data Science",
   "Cooking",
 ];
+
+// The first six cards reproduce the supplied design; additional entries make
+// filtering, sorting and pagination useful without requiring a backend.
+const extraTitles = [
+  [
+    "Interface Design Essentials",
+    "Design Systems in Figma",
+    "Interactive Prototyping",
+    "Accessible Product Design",
+  ],
+  [
+    "Creative Digital Illustration",
+    "Brand Assets from Scratch",
+    "Typography for Digital Creators",
+    "Building a Creative Portfolio",
+  ],
+  [
+    "Data Visualization Essentials",
+    "Getting Started with Analytics",
+    "Web Development Foundations",
+    "Practical Data Storytelling",
+  ],
+  [
+    "A More Focused Workday",
+    "Creative Project Planning",
+    "Sustainable Work Habits",
+    "Organizing Your Creative Practice",
+  ],
+  [
+    "Budgeting for Beginners",
+    "Finance for Freelancers",
+    "Planning Your Financial Goals",
+    "Understanding Business Numbers",
+  ],
+  [
+    "Finding Your First Customers",
+    "Social Media for Creators",
+    "Building Your Brand",
+    "From Freelancer to Founder",
+  ],
+];
+export const catalogCourses = [
+  ...courses.map((c) => ({
+    ...c,
+    price: 25,
+    rating: 4.5,
+    level: "Beginner",
+    baseId: c.id,
+  })),
+  ...extraTitles.flatMap((titles, family) =>
+    titles.map((title, index) => ({
+      ...courses[family],
+      id: `${courses[family].id}-${index + 2}`,
+      baseId: courses[family].id,
+      title,
+      price: [19, 29, 39, 49][index],
+      rating: [4.6, 4.8, 4.7, 4.9][index],
+      level: index < 2 ? "Intermediate" : "Advanced",
+    })),
+  ),
+];
+export function findCourse(id) {
+  return catalogCourses.find((course) => course.id === id);
+}
+export const creator = {
+  id: "purepearl-studio",
+  name: "PurePearl Studio",
+  role: "Passionate UI/UX, Web designer",
+  avatar: "avatar-1.webp",
+  followers: 12,
+  bio: "Welcome to the creative world of PurePearl Studio. Here, you'll discover the passion, expertise, and inspiration that drive my creative journey. Let's explore and learn together!",
+  portfolio:
+    "Dive into my creative portfolio, showcasing a glimpse of my artistic endeavors. From digital designs to multimedia projects, each piece tells a unique story. Explore the world of creativity with me.",
+};
