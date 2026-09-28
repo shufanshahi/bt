@@ -1,3 +1,4 @@
+import { bindCourse } from "./features/course.js";
 import "./styles/index.css";
 import { renderRoute } from "./app/router.js";
 import { bindSite } from "./features/site.js";
@@ -11,3 +12,5 @@ if (route.page === "home") bindHome();
 if (route.page === "auth") bindAuth(route.isSignup);
 if (route.page === "search") bindCatalog();
 if (route.page === "creator") bindCatalog({ creatorOnly: true });
+
+if (route.page === "course") bindCourse(route.course);
