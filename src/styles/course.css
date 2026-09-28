@@ -729,3 +729,240 @@
     font-size: 10px;
   }
 }
+.rating-overview {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 24px;
+  border: 1px solid #d9d9d9;
+  border-radius: 16px;
+  padding: 36px;
+  margin: 26px 0;
+}
+.rating-score {
+  background: var(--lime);
+  border-radius: 7px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 135px;
+}
+.rating-score > span {
+  font-size: 13px;
+}
+.rating-score strong {
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: -1px;
+}
+.rating-bars {
+  display: grid;
+  gap: 9px;
+}
+.rating-bar-row {
+  display: grid;
+  grid-template-columns: 1fr 138px 32px;
+  gap: 16px;
+  align-items: center;
+  font-size: 14px;
+  color: #777;
+}
+.rating-bar-row > span:last-child {
+  text-align: right;
+}
+.bar-stars {
+  font-size: 24px;
+  letter-spacing: 3px;
+  line-height: 1;
+  color: #4b4c53;
+  white-space: nowrap;
+}
+.rating-bar-row meter {
+  width: 100%;
+  height: 8px;
+  border: 0;
+  border-radius: 5px;
+  background: #e6e6e6;
+  appearance: none;
+}
+.rating-bar-row meter::-webkit-meter-bar {
+  border: 0;
+  background: #e6e6e6;
+  border-radius: 5px;
+  height: 8px;
+}
+.rating-bar-row meter::-webkit-meter-optimum-value {
+  background: var(--lime);
+  border-radius: 5px;
+}
+.rating-bar-row meter::-moz-meter-bar {
+  background: var(--lime);
+}
+.review-filters {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+.review-filters .filter {
+  padding: 10px 16px;
+  font-size: 14px;
+}
+.review-filters .filter > span {
+  font-size: 20px;
+  vertical-align: middle;
+  line-height: 1;
+  margin-right: 4px;
+}
+.review-list {
+  display: grid;
+  gap: 24px;
+}
+.review-card {
+  border: 1px solid #d1d1d1;
+  border-radius: 24px;
+  padding: 36px;
+}
+.review-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.review-author img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.review-author h3 {
+  font-size: 16px;
+  font-weight: 500;
+}
+.review-author p {
+  font-size: 14px;
+  color: #777;
+  margin-top: 5px;
+}
+.review-author > span {
+  margin-left: auto;
+  align-self: flex-start;
+  font-size: 13px;
+  color: #888;
+  line-height: 2;
+}
+.review-stars {
+  font-size: 24px;
+  letter-spacing: 3px;
+  color: #4b4c53;
+  margin-top: 22px;
+}
+.review-card blockquote {
+  font-size: 15px;
+  color: #777;
+  line-height: 26px;
+  margin-top: 22px;
+}
+@media (max-width: 1199px) {
+  .rating-overview {
+    padding: 24px;
+    gap: 20px;
+    grid-template-columns: 105px 1fr;
+  }
+  .rating-bar-row {
+    gap: 10px;
+    grid-template-columns: 1fr 95px 27px;
+    font-size: 12px;
+  }
+  .bar-stars {
+    font-size: 18px;
+    letter-spacing: 1px;
+  }
+  .review-card {
+    padding: 28px;
+  }
+  .review-card blockquote {
+    font-size: 14px;
+  }
+  .review-author h3 {
+    font-size: 14px;
+  }
+  .review-author p {
+    font-size: 12px;
+  }
+  .review-author > span {
+    font-size: 11px;
+  }
+  .review-filters {
+    gap: 10px;
+  }
+  .review-filters .filter {
+    font-size: 12px;
+    padding: 9px 13px;
+  }
+}
+@media (max-width: 520px) {
+  .rating-overview {
+    padding: 18px;
+    grid-template-columns: 75px 1fr;
+    gap: 13px;
+  }
+  .rating-score {
+    min-height: 120px;
+  }
+  .rating-score > span {
+    font-size: 11px;
+  }
+  .rating-score strong {
+    font-size: 29px;
+  }
+  .rating-bar-row {
+    grid-template-columns: 1fr 67px 23px;
+    gap: 6px;
+    font-size: 10px;
+  }
+  .bar-stars {
+    font-size: 13px;
+    letter-spacing: 0;
+  }
+  .review-filters {
+    gap: 8px;
+  }
+  .review-filters .filter {
+    font-size: 11px;
+    padding: 9px 11px;
+  }
+  .review-filters .filter > span {
+    font-size: 15px;
+  }
+  .review-card {
+    padding: 22px;
+    border-radius: 20px;
+  }
+  .review-author {
+    gap: 9px;
+  }
+  .review-author img {
+    width: 40px;
+    height: 40px;
+  }
+  .review-author h3 {
+    font-size: 13px;
+  }
+  .review-author p {
+    font-size: 11px;
+  }
+  .review-author > span {
+    font-size: 9px;
+  }
+  .review-card blockquote {
+    font-size: 13px;
+    line-height: 25px;
+  }
+  .review-stars {
+    font-size: 21px;
+  }
+  .course-reviews-content > p {
+    font-size: 13px;
+  }
+}

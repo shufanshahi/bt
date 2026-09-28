@@ -1,3 +1,4 @@
+import { courseReviews } from "../pages/course-reviews.js";
 import { courseLessons } from "../pages/course-lessons.js";
 import { courseDetails } from "../pages/course-details.js";
 import { findCourse } from "../data/courses.js";
@@ -24,12 +25,21 @@ export function renderRoute() {
   } else if (["/creators", "/creators/purepearl-studio"].includes(path)) {
     route = { page: "creator" };
     html = creatorPage();
-  } else if (/^\/courses\/[^/]+(?:\/lessons)?$/.test(path)) {
+  } else if (/^\/courses\/[^/]+(?:\/(?:lessons|reviews))?$/.test(path)) {
     const course = findCourse(path.split("/")[2]);
     if (course) {
-      const tab = path.endsWith("/lessons") ? "lessons" : "about";
+      const tab = path.endsWith("/lessons")
+        ? "lessons"
+        : path.endsWith("/reviews")
+          ? "reviews"
+          : "about";
       route = { page: "course", course, tab };
-      html = tab === "lessons" ? courseLessons(course) : courseDetails(course);
+      html =
+        tab === "lessons"
+          ? courseLessons(course)
+          : tab === "reviews"
+            ? courseReviews(course)
+            : courseDetails(course);
     } else html = notFound();
   } else html = notFound();
   document.querySelector("#app").innerHTML = html;
