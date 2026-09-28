@@ -40,13 +40,13 @@ test("search returns matching courses and recovers from no results", async ({
   await search.fill("figma");
   await search.press("Enter");
   await expect(
-    page.getByRole("button", {
+    page.getByRole("link", {
       name: "View Learn Figma from Basic",
       exact: true,
     }),
   ).toBeVisible();
   await expect(
-    page.getByRole("button", {
+    page.getByRole("link", {
       name: "View the Power of Big Data",
       exact: true,
     }),
@@ -54,13 +54,13 @@ test("search returns matching courses and recovers from no results", async ({
   await search.fill("a course that does not exist");
   await search.press("Enter");
   await expect(
-    page.getByRole("heading", { name: "No courses found" }),
+    page.getByRole("heading", { name: "No results found" }),
   ).toBeVisible();
   await page
-    .getByRole("button", { name: "View all courses", exact: true })
+    .getByRole("button", { name: "Clear search and filters", exact: true })
     .click();
   await expect(
-    page.getByRole("button", {
+    page.getByRole("link", {
       name: "View the Power of Big Data",
       exact: true,
     }),
@@ -77,7 +77,7 @@ test("category and learning-path filters show relevant courses", async ({
     page.getByRole("button", { name: "UI/UX Design", exact: true }),
   ).toHaveAttribute("aria-pressed", "true");
   await expect(
-    page.getByRole("button", {
+    page.getByRole("link", {
       name: "View Learn Figma from Basic",
       exact: true,
     }),
@@ -87,38 +87,44 @@ test("category and learning-path filters show relevant courses", async ({
     .first()
     .click();
   await expect(
-    page.getByRole("button", {
+    page.getByRole("link", {
       name: "View the Power of Big Data",
       exact: true,
     }),
   ).toBeVisible();
   await expect(
-    page.getByRole("button", {
+    page.getByRole("link", {
       name: "View Learn Figma from Basic",
       exact: true,
     }),
   ).toHaveCount(0);
 });
 
-test("course dialog supports keyboard dismissal and signup navigation", async ({
+test("course pages connect preview, lessons, and enrollment", async ({
   page,
 }) => {
   await page.goto("/");
-  const course = page.getByRole("button", {
-    name: "View Learn Figma from Basic",
-    exact: true,
-  });
-  await course.click();
+  await page
+    .getByRole("link", { name: "View Learn Figma from Basic", exact: true })
+    .click();
+  await expect(page).toHaveURL(/\/courses\/figma$/);
+  await page.getByRole("button", { name: "Play course preview" }).click();
   await expect(page.getByRole("dialog")).toBeVisible();
-  await expect(page.getByRole("dialog").getByRole("heading")).toHaveText(
-    "Learn Figma from Basic",
-  );
   await page.keyboard.press("Escape");
-  await expect(page.getByRole("dialog")).not.toBeVisible();
-  await expect(course).toBeFocused();
-  await course.click();
-  await page.getByRole("link", { name: "Start learning" }).click();
-  await expect(page).toHaveURL(/\/signup$/);
+  await expect(page.getByRole("dialog")).toBeHidden();
+  await page
+    .getByRole("navigation", { name: "Course sections" })
+    .getByRole("link", { name: "Lessons" })
+    .click();
+  await expect(
+    page.getByRole("heading", { name: "Explore the Modules" }),
+  ).toBeVisible();
+  await page.getByRole("button", { name: "Enroll Now" }).click();
+  await page
+    .getByRole("dialog")
+    .getByRole("link", { name: "Create an account" })
+    .click();
+  await expect(page).toHaveURL(/\/signup\?course=figma$/);
   await expect(
     page.getByRole("heading", { name: "Welcome to ByteSpace" }),
   ).toBeVisible();
